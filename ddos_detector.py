@@ -32,3 +32,22 @@ def monitor_traffic():
 
         if total_speed > THRESHOLD:
             detect_attack(total_speed)
+
+#detects and prevents the ddos attack
+def detect_attack(speed):
+    log_message(f"DDoS Detected! Traffic: {speed/1024:.2f} KB/s")
+    messagebox.showwarning("Warning!", f"Possible DDoS attack detected! Traffic: {speed/1024:.2f} KB/s")
+
+    connections = psutil.net_connections(kind='inet')
+    attacker_ip = None
+
+    for conn in connections:
+        if conn.raddr and conn.status == 'ESTABLISHED':
+            ip = conn.raddr.ip
+            if ip not in BLOCKLIST:
+                attacker_ip = ip
+                break
+
+    if attacker_ip:
+        BLOCKLIST.add(attacker_ip)
+        block_ip(attacker_ip)
