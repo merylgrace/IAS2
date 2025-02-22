@@ -67,3 +67,9 @@ def block_ip(ip):
 def log_message(message):
     log_text.insert(tk.END, f"{message}\n")
     log_text.see(tk.END)
+
+#GUI
+root = tk.Tk()
+root.title("DDoS Detection & Prevention")
+root.geometry("500x300")
+root.configure(bg="black")
