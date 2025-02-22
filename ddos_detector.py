@@ -62,3 +62,8 @@ def block_ip(ip):
     except Exception as e:
         log_message(f"Error blocking IP: {e}")
         messagebox.showerror("Error", f"Failed to block IP: {e}")
+
+#logging messages
+def log_message(message):
+    log_text.insert(tk.END, f"{message}\n")
+    log_text.see(tk.END)
