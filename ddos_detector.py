@@ -71,14 +71,14 @@ def log_message(message):
 #GUI
 root = tk.Tk()
 root.title("DDoS Detection & Prevention")
-root.geometry("500x300")
+root.geometry("500x350")
 root.configure(bg="black")
 
 #GUI elements
 title_label = tk.Label(root, text="DDoS Detection System", font=("Arial", 14, "bold"), fg="white", bg="black")
 title_label.pack(pady=10)
 
-status_label = tk.Label(root, text="Monitoring...", font=("Arial", 12), fg="lime", bg="black")
+status_label = tk.Label(root, text="Press Start Monitoring", font=("Arial", 12), fg="lime", bg="black")
 status_label.pack()
 
 #log box for alerts
