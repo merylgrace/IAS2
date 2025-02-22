@@ -51,3 +51,14 @@ def detect_attack(speed):
     if attacker_ip:
         BLOCKLIST.add(attacker_ip)
         block_ip(attacker_ip)
+
+#to block the attacker's IP
+def block_ip(ip):
+    try:
+        cmd = f'netsh advfirewall firewall add rule name="Block {ip}" dir=in action=block remoteip={ip}'
+        subprocess.run(cmd, shell=True, check=True)
+        log_message(f"Blocked IP: {ip}")
+        messagebox.showinfo("Blocked!", f"Attacker IP {ip} has been blocked!")
+    except Exception as e:
+        log_message(f"Error blocking IP: {e}")
+        messagebox.showerror("Error", f"Failed to block IP: {e}")
