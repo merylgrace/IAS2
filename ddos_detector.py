@@ -80,3 +80,17 @@ title_label.pack(pady=10)
 
 status_label = tk.Label(root, text="Monitoring...", font=("Arial", 12), fg="lime", bg="black")
 status_label.pack()
+
+#log box for alerts
+log_text = scrolledtext.ScrolledText(root, width=60, height=10, bg="black", fg="white", font=("Arial", 10))
+log_text.pack(pady=5)
+
+#start and exit buttons
+start_button = tk.Button(root, text="Start Monitoring", command=lambda: threading.Thread(target=monitor_traffic, daemon=True).start(), font=("Arial", 12), bg="green", fg="white")
+start_button.pack(pady=5)
+
+exit_button = tk.Button(root, text="Exit", command=root.quit, font=("Arial", 12), bg="red", fg="white")
+exit_button.pack(pady=5)
+
+#to run the GUI
+root.mainloop()
