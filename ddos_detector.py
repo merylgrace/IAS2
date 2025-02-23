@@ -5,12 +5,12 @@ import subprocess
 import threading
 import time
 
-#detection
+# detection
 THRESHOLD = 1000000  # 1 Mbps (in Bytes per second)
 SCAN_INTERVAL = 3  # Monitor traffic every 3 seconds
 BLOCKLIST = set()  # Stores blocked IPs
 
-#monitor the network traffic
+# monitor the network traffic
 def monitor_traffic():
     while True:
         net_io = psutil.net_io_counters()
@@ -33,7 +33,7 @@ def monitor_traffic():
         if total_speed > THRESHOLD:
             detect_attack(total_speed)
 
-#detects and prevents the ddos attack
+# detects and prevents the ddos attack
 def detect_attack(speed):
     log_message(f"DDoS Detected! Traffic: {speed/1024:.2f} KB/s")
     messagebox.showwarning("Warning!", f"Possible DDoS attack detected! Traffic: {speed/1024:.2f} KB/s")
@@ -52,7 +52,7 @@ def detect_attack(speed):
         BLOCKLIST.add(attacker_ip)
         block_ip(attacker_ip)
 
-#to block the attacker's IP
+# to block the attacker's IP
 def block_ip(ip):
     try:
         cmd = f'netsh advfirewall firewall add rule name="Block {ip}" dir=in action=block remoteip={ip}'
@@ -63,25 +63,25 @@ def block_ip(ip):
         log_message(f"Error blocking IP: {e}")
         messagebox.showerror("Error", f"Failed to block IP: {e}")
 
-#logging messages
+# logging messages
 def log_message(message):
     log_text.insert(tk.END, f"{message}\n")
     log_text.see(tk.END)
 
-#GUI
+# GUI
 root = tk.Tk()
 root.title("DDoS Detection & Prevention")
 root.geometry("500x350")
 root.configure(bg="black")
 
-#GUI elements
+# GUI elements
 title_label = tk.Label(root, text="DDoS Detection System", font=("Arial", 14, "bold"), fg="white", bg="black")
 title_label.pack(pady=10)
 
 status_label = tk.Label(root, text="Press Start Monitoring", font=("Arial", 12), fg="lime", bg="black")
 status_label.pack()
 
-#log box for alerts
+# log box for alerts
 log_text = scrolledtext.ScrolledText(root, width=60, height=10, bg="black", fg="white", font=("Arial", 10))
 log_text.pack(pady=5)
 
@@ -92,5 +92,5 @@ start_button.pack(pady=5)
 exit_button = tk.Button(root, text="Exit", command=root.quit, font=("Arial", 12), bg="red", fg="white")
 exit_button.pack(pady=5)
 
-#to run the GUI
+# to run the GUI
 root.mainloop()
