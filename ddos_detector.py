@@ -7,7 +7,7 @@ import time
 
 #detection
 THRESHOLD = 1000000  # 1 Mbps
-SCAN_INTERVAL = 5  # Monitor traffic every 5 seconds
+SCAN_INTERVAL = 3  # Monitor traffic every 3 seconds
 BLOCKLIST = set()  # Stores blocked IPs
 
 #monitor the network traffic
