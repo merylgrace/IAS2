@@ -6,7 +6,7 @@ import threading
 import time
 
 #detection
-THRESHOLD = 1000000  # 1 Mbps
+THRESHOLD = 1000000  # 1 Mbps (in Bytes per second)
 SCAN_INTERVAL = 3  # Monitor traffic every 3 seconds
 BLOCKLIST = set()  # Stores blocked IPs
 
